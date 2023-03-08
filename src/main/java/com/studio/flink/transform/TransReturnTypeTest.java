@@ -21,7 +21,7 @@ public class TransReturnTypeTest {
         // 想要转换成二元组类型，需要进行以下处理
         // 1) 使用显式的 ".returns(...)"
         DataStream<Tuple2<String, Long>> stream3 = clicks
-                .map( event -> Tuple2.of(event.user, 1L) )
+                .map(event -> Tuple2.of(event.user, 1L))
                 .returns(Types.TUPLE(Types.STRING, Types.LONG));
         stream3.print();
 
@@ -42,7 +42,7 @@ public class TransReturnTypeTest {
     }
 
     // 自定义MapFunction的实现类
-    public static class MyTuple2Mapper implements MapFunction<Event, Tuple2<String, Long>>{
+    public static class MyTuple2Mapper implements MapFunction<Event, Tuple2<String, Long>> {
         @Override
         public Tuple2<String, Long> map(Event value) throws Exception {
             return Tuple2.of(value.user, 1L);

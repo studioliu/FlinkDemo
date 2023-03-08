@@ -52,7 +52,9 @@ public class TransUdfTest {
     public static class KeyWordFilter implements FilterFunction<Event> {
         private String keyWord;
 
-        KeyWordFilter(String keyWord) { this.keyWord = keyWord; }
+        KeyWordFilter(String keyWord) {
+            this.keyWord = keyWord;
+        }
 
         @Override
         public boolean filter(Event value) throws Exception {

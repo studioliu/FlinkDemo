@@ -1,4 +1,4 @@
-package com.studio.flink.manipulation;
+package com.studio.flink.process;
 
 import com.studio.flink.source.ClickSource;
 import com.studio.flink.source.Event;
@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class KeyedProcessTopN {
-
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
@@ -92,7 +91,7 @@ public class KeyedProcessTopN {
     }
 
     // 自定义处理函数，排序取top n
-    public static class TopN extends KeyedProcessFunction<Long, UrlViewCount, String>{
+    public static class TopN extends KeyedProcessFunction<Long, UrlViewCount, String> {
         // 将n作为属性
         private Integer n;
         // 定义一个列表状态

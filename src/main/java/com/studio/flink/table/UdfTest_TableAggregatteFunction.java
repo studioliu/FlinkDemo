@@ -67,6 +67,7 @@ public class UdfTest_TableAggregatteFunction {
 
         env.execute();
     }
+
     // 聚合累加器的类型定义，包含最大的第一和第二两个数据
     public static class Top2Accumulator {
         public Long first;

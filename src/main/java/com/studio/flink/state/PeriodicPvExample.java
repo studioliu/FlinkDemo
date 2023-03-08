@@ -6,19 +6,15 @@ import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
-
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
-
 import org.apache.flink.util.Collector;
 
+public class PeriodicPvExample {
 
-
-public class PeriodicPvExample{
-
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
@@ -43,7 +39,7 @@ public class PeriodicPvExample{
     }
 
     // 注册定时器，周期性输出pv
-    public static class PeriodicPvResult extends KeyedProcessFunction<String ,Event, String>{
+    public static class PeriodicPvResult extends KeyedProcessFunction<String, Event, String> {
         // 定义两个状态，保存当前pv值，以及定时器时间戳
         ValueState<Long> countState;
         ValueState<Long> timerTsState;
@@ -58,13 +54,13 @@ public class PeriodicPvExample{
         public void processElement(Event value, Context ctx, Collector<String> out) throws Exception {
             // 更新count值
             Long count = countState.value();
-            if (count == null){
+            if (count == null) {
                 countState.update(1L);
             } else {
                 countState.update(count + 1);
             }
             // 注册定时器
-            if (timerTsState.value() == null){
+            if (timerTsState.value() == null) {
                 ctx.timerService().registerEventTimeTimer(value.timestamp + 10 * 1000L);
                 timerTsState.update(value.timestamp + 10 * 1000L);
             }
@@ -76,6 +72,7 @@ public class PeriodicPvExample{
             // 清空状态
             timerTsState.clear();
         }
-    }}
+    }
+}
 
 

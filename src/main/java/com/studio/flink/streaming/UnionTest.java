@@ -15,8 +15,6 @@ public class UnionTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-
-
         SingleOutputStreamOperator<Event> stream1 = env.socketTextStream("hadoop102", 7777)
                 .map(data -> {
                     String[] field = data.split(",");

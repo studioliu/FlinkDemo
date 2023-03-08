@@ -36,7 +36,7 @@ public class TransPhysicalPatitioningTest {
                         for (int i = 1; i <= 8; i++) {
                             // 将奇数发送到索引为1的并行子任务
                             // 将偶数发送到索引为0的并行子任务
-                            if ( i % 2 == getRuntimeContext().getIndexOfThisSubtask()) {
+                            if (i % 2 == getRuntimeContext().getIndexOfThisSubtask()) {
                                 sourceContext.collect(i);
                             }
                         }

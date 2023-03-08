@@ -1,4 +1,4 @@
-package com.studio.flink.manipulation;
+package com.studio.flink.process;
 
 import com.studio.flink.source.ClickSource;
 import com.studio.flink.source.Event;

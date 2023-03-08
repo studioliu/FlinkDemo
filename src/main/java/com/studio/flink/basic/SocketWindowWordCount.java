@@ -42,7 +42,7 @@ public class SocketWindowWordCount {
                 })
                 .keyBy(obj -> obj.word)
 //                .timeWindow(Time.seconds(5), Time.seconds(1)) // 过时
-                .window(TumblingProcessingTimeWindows.of(Time.seconds(5),Time.seconds(1)))
+                .window(TumblingProcessingTimeWindows.of(Time.seconds(5), Time.seconds(1)))
                 .reduce(new ReduceFunction<WordWithCount>() {
                     @Override
                     public WordWithCount reduce(WordWithCount a, WordWithCount b) {
@@ -57,7 +57,9 @@ public class SocketWindowWordCount {
         env.execute("Socket Window WordCount");
     }
 
-    /** 单词和统计次数的数据结构 */
+    /**
+     * 单词和统计次数的数据结构
+     */
     public static class WordWithCount {
         public String word;
         public long count;

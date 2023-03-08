@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class TransFilterTest {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
@@ -28,6 +28,7 @@ public class TransFilterTest {
 
         env.execute();
     }
+
     public static class UserFilter implements FilterFunction<Event> {
         @Override
         public boolean filter(Event e) throws Exception {

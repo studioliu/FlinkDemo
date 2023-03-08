@@ -15,7 +15,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
 public class StateTest {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
@@ -30,15 +30,15 @@ public class StateTest {
                 );
 
         stream.keyBy(data -> data.user)
-                        .flatMap(new MyFlatMap())
-                                .print();
+                .flatMap(new MyFlatMap())
+                .print();
 
 
         env.execute();
     }
 
     // 实现自定义的FlatMapFunction，用于Keyed State测试
-    public static class MyFlatMap extends RichFlatMapFunction<Event, String>{
+    public static class MyFlatMap extends RichFlatMapFunction<Event, String> {
         // 定义状态
         ValueState<Event> myValueState;
         ListState<Event> myListState;
@@ -104,20 +104,20 @@ public class StateTest {
             // 访问和更新状态
             System.out.println(myValueState.value());
             myValueState.update(value);
-            System.out.println( "my value: " + myValueState.value() );
+            System.out.println("my value: " + myValueState.value());
 
             myListState.add(value);
 
-            myMapState.put(value.user, myMapState.get(value.user) == null? 1: myMapState.get(value.user) + 1);
-            System.out.println( "my map value: " + myMapState.get(value.user) );
+            myMapState.put(value.user, myMapState.get(value.user) == null ? 1 : myMapState.get(value.user) + 1);
+            System.out.println("my map value: " + myMapState.get(value.user));
 
             myReducingState.add(value);
-            System.out.println( "my reducing value: " + myReducingState.get() );
+            System.out.println("my reducing value: " + myReducingState.get());
 
             myAggregatingState.add(value);
-            System.out.println( "my agg value: " + myAggregatingState.get() );
+            System.out.println("my agg value: " + myAggregatingState.get());
 
-            count ++;
+            count++;
             System.out.println("count: " + count);
         }
     }

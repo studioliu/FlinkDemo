@@ -67,8 +67,7 @@ public class NFAExample {
                 // 如果检测到匹配的复杂事件，输出报警信息
                 out.collect(event.userId + " 连续三次登录失败");
                 // 需要跳转回S2状态，这里直接不更新状态就可以了
-            }
-            else if (nextState == State.Terminal) {
+            } else if (nextState == State.Terminal) {
                 // 如果到了终止状态，就重置状态，准备重新开始
                 currentState.update(State.Initial);
             } else {

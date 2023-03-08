@@ -14,7 +14,7 @@ public class SourceCustomParallel {
         env.execute();
     }
 
-    public static class CustomSource  implements ParallelSourceFunction<Integer> {
+    public static class CustomSource implements ParallelSourceFunction<Integer> {
         private boolean running = true;
         private Random random = new Random();
 

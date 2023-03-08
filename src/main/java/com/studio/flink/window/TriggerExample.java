@@ -1,13 +1,5 @@
 package com.studio.flink.window;
 
-/**
- * Copyright (c) 2020-2030 尚硅谷 All Rights Reserved
- * <p>
- * Project:  FlinkTutorial
- * <p>
- * Created by  wushengran
- */
-
 import com.studio.flink.source.ClickSource;
 import com.studio.flink.source.Event;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
@@ -29,8 +21,7 @@ public class TriggerExample {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        env
-                .addSource(new ClickSource())
+        env.addSource(new ClickSource())
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy.<Event>forMonotonousTimestamps()
                                 .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {

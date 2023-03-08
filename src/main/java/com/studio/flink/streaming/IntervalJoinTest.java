@@ -62,5 +62,6 @@ public class IntervalJoinTest {
                 .print();
 
         env.execute();
-    }}
+    }
+}
 

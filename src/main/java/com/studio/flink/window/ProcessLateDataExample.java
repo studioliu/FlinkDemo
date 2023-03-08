@@ -27,7 +27,7 @@ public class ProcessLateDataExample {
                         .map(new MapFunction<String, Event>() {
                             @Override
                             public Event map(String value) throws Exception {
-                                String[] fields = value.split(" ");
+                                String[] fields = value.split(",");
                                 return new Event(fields[0].trim(), fields[1].trim(), Long.valueOf(fields[2].trim()));
                             }
                         })

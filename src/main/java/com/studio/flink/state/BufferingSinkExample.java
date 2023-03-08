@@ -21,7 +21,7 @@ import java.util.List;
 
 public class BufferingSinkExample {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
@@ -72,7 +72,7 @@ public class BufferingSinkExample {
         public void invoke(Event value, Context context) throws Exception {
             bufferedElements.add(value);
             if (bufferedElements.size() == threshold) {
-                for (Event element: bufferedElements) {
+                for (Event element : bufferedElements) {
                     // 输出到外部系统，这里用控制台打印模拟
                     System.out.println(element);
                 }

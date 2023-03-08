@@ -20,7 +20,7 @@ import org.apache.flink.util.Collector;
 import java.sql.Timestamp;
 
 public class AverageTimestampExample {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
@@ -43,7 +43,7 @@ public class AverageTimestampExample {
         env.execute();
     }
 
-    public static class AvgTsResult extends RichFlatMapFunction<Event, String>{
+    public static class AvgTsResult extends RichFlatMapFunction<Event, String> {
         // 定义聚合状态，用来计算平均时间戳
         AggregatingState<Event, Long> avgTsAggState;
 
@@ -84,17 +84,17 @@ public class AverageTimestampExample {
         @Override
         public void flatMap(Event value, Collector<String> out) throws Exception {
             Long count = countState.value();
-            if (count == null){
+            if (count == null) {
                 count = 1L;
             } else {
-                count ++;
+                count++;
             }
 
             countState.update(count);
             avgTsAggState.add(value);
 
             // 达到5次就输出结果，并清空状态
-            if (count == 5){
+            if (count == 5) {
                 out.collect(value.user + " 平均时间戳：" + new Timestamp(avgTsAggState.get()));
                 countState.clear();
             }

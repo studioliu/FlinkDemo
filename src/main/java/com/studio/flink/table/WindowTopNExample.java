@@ -7,6 +7,7 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+
 import static org.apache.flink.table.api.Expressions.$;
 
 public class WindowTopNExample {
@@ -19,7 +20,7 @@ public class WindowTopNExample {
                 .fromElements(
                         new Event("Alice", "./home", 1000L),
                         new Event("Bob", "./cart", 1000L),
-                        new Event("Alice", "./prod?id=1",  25 * 60 * 1000L),
+                        new Event("Alice", "./prod?id=1", 25 * 60 * 1000L),
                         new Event("Alice", "./prod?id=4", 55 * 60 * 1000L),
                         new Event("Bob", "./prod?id=5", 3600 * 1000L + 60 * 1000L),
                         new Event("Cary", "./home", 3600 * 1000L + 30 * 60 * 1000L),

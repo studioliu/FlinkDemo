@@ -13,7 +13,8 @@ public class LoginEvent {
         this.timestamp = timestamp;
     }
 
-    public LoginEvent() {}
+    public LoginEvent() {
+    }
 
     @Override
     public String toString() {

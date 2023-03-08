@@ -1,4 +1,4 @@
-package com.studio.flink.manipulation;
+package com.studio.flink.process;
 
 import com.studio.flink.source.ClickSource;
 import com.studio.flink.source.Event;
@@ -13,8 +13,7 @@ public class ProcessFunctionTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        env
-                .addSource(new ClickSource())
+        env.addSource(new ClickSource())
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy.<Event>forMonotonousTimestamps()
                                 .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {

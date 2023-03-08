@@ -54,10 +54,10 @@ public class UdfTest_ScalarFunction {
         resultTable.executeInsert("output");
     }
 
-     // 自定义一个ScalarFunction
+    // 自定义一个ScalarFunction
     public static class MyHash extends ScalarFunction {
-        public int eval(String str){
+        public int eval(String str) {
             return str.hashCode();
         }
-     }
+    }
 }

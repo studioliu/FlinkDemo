@@ -72,7 +72,8 @@ public class OrderTimeoutDetectExample {
         SingleOutputStreamOperator<String> payedOrderStream = patternStream.process(new OrderPayPatternProcessFunction());
 
         // 4. 定义一个测输出流标签，用于标识超时测输出流
-        OutputTag<String> timeoutTag = new OutputTag<String>("timeout") {};
+        OutputTag<String> timeoutTag = new OutputTag<String>("timeout") {
+        };
 
         // 5. 将正常匹配和超时部分匹配的处理结果流打印输出
         payedOrderStream.print("payed");
@@ -94,7 +95,8 @@ public class OrderTimeoutDetectExample {
         @Override
         public void processTimedOutMatch(Map<String, List<OrderEvent>> match, Context ctx) throws Exception {
             OrderEvent createEvent = match.get("create").get(0);
-            ctx.output(new OutputTag<String>("timeout"){}, "订单 " + createEvent.orderId + " 超时未支付！用户为：" + createEvent.userId);
+            ctx.output(new OutputTag<String>("timeout") {
+            }, "订单 " + createEvent.orderId + " 超时未支付！用户为：" + createEvent.userId);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.studio.flink.manipulation;
+package com.studio.flink.process;
 
 import com.studio.flink.source.Event;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
@@ -63,7 +63,8 @@ public class EventTimeTimerTest {
         }
 
         @Override
-        public void cancel() { }
+        public void cancel() {
+        }
     }
 }
 

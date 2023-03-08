@@ -26,8 +26,8 @@ public class ConnectFile {
 
         tableEnv.createTemporaryTable("FileSinkTable", TableDescriptor.forConnector("filesystem")
                 .schema(Schema.newBuilder()
-                        .column("user_name",DataTypes.STRING())
-                        .column("cnt",DataTypes.BIGINT())
+                        .column("user_name", DataTypes.STRING())
+                        .column("cnt", DataTypes.BIGINT())
                         .build())
                 .format("json")
                 .option("path", "output")

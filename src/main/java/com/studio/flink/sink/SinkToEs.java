@@ -31,7 +31,7 @@ public class SinkToEs {
                 new Event("Bob", "./prod?id=3", 3300L));
 
         ArrayList<HttpHost> httpHosts = new ArrayList<>();
-        httpHosts.add(new HttpHost("hadoop102", 9200, "http"));
+        httpHosts.add(new HttpHost("master", 9200, "http"));
 
         // 创建一个ElasticsearchSinkFunction
         ElasticsearchSinkFunction<Event> elasticsearchSinkFunction = new ElasticsearchSinkFunction<Event>() {

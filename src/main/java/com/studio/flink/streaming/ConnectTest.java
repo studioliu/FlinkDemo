@@ -11,8 +11,8 @@ public class ConnectTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        DataStream<Integer> stream1 = env.fromElements(1,2,3);
-        DataStream<Long> stream2 = env.fromElements(1L,2L,3L);
+        DataStream<Integer> stream1 = env.fromElements(1, 2, 3);
+        DataStream<Long> stream2 = env.fromElements(1L, 2L, 3L);
 
         ConnectedStreams<Integer, Long> connectedStreams = stream1.connect(stream2);
         SingleOutputStreamOperator<String> result = connectedStreams.map(new CoMapFunction<Integer, Long, String>() {

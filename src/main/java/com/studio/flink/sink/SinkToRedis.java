@@ -19,13 +19,14 @@ public class SinkToRedis {
 
         // 创建一个到redis连接的配置
         FlinkJedisPoolConfig conf = new FlinkJedisPoolConfig.Builder()
-                .setHost("hadoop102")
+                .setHost("master")
                 .build();
 
         stream.addSink(new RedisSink<>(conf, new MyRedisMapper()));
 
         env.execute();
     }
+
     public static class MyRedisMapper implements RedisMapper<Event> {
         @Override
         public RedisCommandDescription getCommandDescription() {

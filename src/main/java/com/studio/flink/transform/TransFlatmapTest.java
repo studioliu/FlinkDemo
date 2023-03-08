@@ -20,6 +20,7 @@ public class TransFlatmapTest {
 
         env.execute();
     }
+
     public static class MyFlatMap implements FlatMapFunction<Event, String> {
         @Override
         public void flatMap(Event value, Collector<String> out) throws Exception {

@@ -65,7 +65,7 @@ public class UdfTest_AggregateFunction {
     }
 
     // 自定义一个AggregateFunction，求加权平均值
-    public static class WeightedAverage extends AggregateFunction<Long, WeightedAvgAccumulator>{
+    public static class WeightedAverage extends AggregateFunction<Long, WeightedAvgAccumulator> {
         @Override
         public Long getValue(WeightedAvgAccumulator accumulator) {
             if (accumulator.count == 0)
@@ -80,7 +80,7 @@ public class UdfTest_AggregateFunction {
         }
 
         // 累加计算方法，类似于add
-        public void accumulate(WeightedAvgAccumulator accumulator, Long iValue, Integer iWeight){
+        public void accumulate(WeightedAvgAccumulator accumulator, Long iValue, Integer iWeight) {
             accumulator.sum += iValue * iWeight;    // 这个值要算iWeight次
             accumulator.count += iWeight;
         }

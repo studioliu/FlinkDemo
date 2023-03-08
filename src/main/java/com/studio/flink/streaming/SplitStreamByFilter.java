@@ -31,7 +31,7 @@ public class SplitStreamByFilter {
         DataStream<Event> elseStream = stream.filter(new FilterFunction<Event>() {
             @Override
             public boolean filter(Event value) throws Exception {
-                return !value.user.equals("Mary") && !value.user.equals("Bob") ;
+                return !value.user.equals("Mary") && !value.user.equals("Bob");
             }
         });
 

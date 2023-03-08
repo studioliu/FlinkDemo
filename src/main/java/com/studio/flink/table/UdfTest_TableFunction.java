@@ -59,10 +59,10 @@ public class UdfTest_TableFunction {
     }
 
     // 自定义一个TableFunction，注意有泛型，这里输出的是两个字段，二元组
-    public static class MySplit extends TableFunction<Tuple2<String, Integer>>{
-        public void eval(String str){
+    public static class MySplit extends TableFunction<Tuple2<String, Integer>> {
+        public void eval(String str) {
             String[] fields = str.split("\\?");    // 转义问号，以及反斜杠本身
-            for (String field : fields){
+            for (String field : fields) {
                 collect(Tuple2.of(field, field.length()));
             }
         }
