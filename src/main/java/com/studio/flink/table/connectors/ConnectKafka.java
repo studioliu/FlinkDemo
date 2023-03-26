@@ -1,6 +1,7 @@
 package com.studio.flink.table.connectors;
 
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.kafka.table.KafkaConnectorOptions;
 import org.apache.flink.table.api.DataTypes;
 import org.apache.flink.table.api.Schema;
 import org.apache.flink.table.api.TableDescriptor;
@@ -19,10 +20,11 @@ public class ConnectKafka {
                         .column("url", DataTypes.STRING())
                         .column("ts", DataTypes.BIGINT())
                         .build())
-                .option("topic", "clicks")
-                .option("properties.bootstrap.servers", "master:9092")
-                .option("properties.group.id", "testGroup")
-                .option("scan.startup.mode", "latest-offset") //`earliest-offset`：从可能的最早偏移量开始。`latest-offset`：从最末尾偏移量开始。
+                .option(KafkaConnectorOptions.PROPS_BOOTSTRAP_SERVERS.key(), "master:9092")
+                .option(KafkaConnectorOptions.TOPIC.key(), "clicks")
+                .option(KafkaConnectorOptions.PROPS_GROUP_ID.key(), "Consumer_Group01")
+                .option(KafkaConnectorOptions.SCAN_STARTUP_MODE.key(),
+                        KafkaConnectorOptions.ScanStartupMode.LATEST_OFFSET.name())
                 .format("csv")
                 .build());
 
@@ -32,8 +34,8 @@ public class ConnectKafka {
                         .column("url", DataTypes.STRING())
                         .column("ts", DataTypes.BIGINT())
                         .build())
-                .option("topic", "events")
-                .option("properties.bootstrap.servers", "master:9092")
+                .option(KafkaConnectorOptions.PROPS_BOOTSTRAP_SERVERS.key(), "master:9092")
+                .option(KafkaConnectorOptions.TOPIC.key(), "events")
                 .format("json")
                 .build());
 

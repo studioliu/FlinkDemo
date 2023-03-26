@@ -1,4 +1,4 @@
-package com.studio.flink.project.dianxin;
+package com.studio.flink.project.dianxin_case_city_people_flow;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -21,7 +21,7 @@ public class Demo1DataToKafka {
 
         List<String> lines = Files.readAllLines(Paths.get("src/main/java/com/studio/flink/project/dianxin/dianxin_data"), StandardCharsets.UTF_8);
         for (String line : lines) {
-            ProducerRecord<String, String> record = new ProducerRecord<>("dianxin", line);
+            ProducerRecord<String, String> record = new ProducerRecord<>("ods", line);
             kafkaProducer.send(record);
             kafkaProducer.flush();
             Thread.sleep(1000);
